@@ -8,18 +8,46 @@ const app = require('../app');
 const debug = require('debug')('nearby:server');
 const http = require('http');
 const mongoose = require('mongoose');
-
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-};
-const url = 'mongodb://localhost:27017/jumbo';
+const { dbURL, seeds } = require("../conf/configuration");
+const models = ["store"];
 
 const connectDB = async () => {
-    await mongoose.connect(url, options);
+    console.log(`Connecting DB`);
+    try {
+        return await mongoose.connect(dbURL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+    } catch (error) {
+        throw new Error(error.toString())
+    }
 }
 
+const executeSeeds = async () => {
+    if (!seeds || !seeds.length) {
+        return;
+    }
+    console.log(`Executing Seeds`);
+    for (const seed of seeds) {
+        try {
+            if (!seed.model || !models.includes(seed.model.toLowerCase()) || !seed.data || !seed.data.length) {
+                return;
+            }
+            const model = require(`../models/${seed.model.toLowerCase()}`)[seed.model];
+            for (const document of seed.data) {
+                await model.findOneAndUpdate({ uuid: document.uuid }, document, { upsert: true });
+            }
+        } catch (error) {
+            throw new Error(`${error.toString() || "Cannot execute seeds"}`);
+        }
+    }
+    console.log(`Seeds Executed Successfully`);
+    return;
+}
+
+
 connectDB()
+    .then(_ => executeSeeds())
     .then(_ => {
         console.log(`DB connection successful`);
         /**
@@ -99,5 +127,5 @@ connectDB()
         }
     })
     .catch(err => {
-        console.log(`Error `, err);
+        console.log(err);
     });
