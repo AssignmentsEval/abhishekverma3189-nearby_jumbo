@@ -13,12 +13,13 @@ const StoreSchema = new mongoose.Schema({
     "latitude": { type: String, required: [true, 'Latitude is mandatory'] },
     "complexNumber": { type: String },
     "showWarningMessage": { type: Boolean },
-    "todayOpen": { type: Date, required: [true, 'Open Time is mandatory'] },
+    "todayOpen": { type: String, required: [true, 'Open Time is mandatory'] },
     "locationType": { type: String },
     "collectionPoint": { type: Boolean },
     "sapStoreID": { type: String },
-    "todayClose": { type: Date, required: [true, 'Closse Time is mandatory'] }
+    "todayClose": { type: String, required: [true, 'Closse Time is mandatory'] }
 }, {
+    toJSON: { getters: true, virtuals: true },
     timestamps:  { createdAt: 'created_at', updatedAt: 'updated_at' }
 }, );
 

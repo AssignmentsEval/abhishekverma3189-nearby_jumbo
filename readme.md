@@ -1,3 +1,16 @@
+TODOS:
+
+[] node express server
+[] Store model and schems
+[] Route and controller setup
+
+Features:
+[] seed DB with default stores.
+[] CRUD action on stores with FE forms.
+[] listNearby logic
+[] listNearby cache
+[] update nearby maps on stores update
+
 Create an application that shows the five closest Jumbo stores to a given position.
 
 You can find a list of Jumbo stores in JSON format attached to this e-mail.There are just a few rules:
