@@ -1,24 +1,18 @@
 const Joi = require('joi');
 
-/**
- * API
- * createToken
- * nearby
- * list store details
- * update store details
- * create a new store
- */
+const latitudeRegExp = new RegExp(/^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/i);
+const longitudeRegExp = new RegExp(/^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))/i);
 
 const createTokenSchema = Joi.object({
-    email: Joi.string().required(),
+    email: Joi.string().email().required(),
     password: Joi.string().required()
 });
 exports.createTokenSchema = createTokenSchema;
 
 const nearbySchema = Joi.object({
-    lat1: Joi.string().required(),
-    long1: Joi.string().required(),
-    unit: Joi.string().required()
+    lat1: Joi.string().pattern(latitudeRegExp),
+    long1: Joi.string().pattern(longitudeRegExp),
+    unit: Joi.any().valid('K', 'M').default('K')
 });
 exports.nearbySchema = nearbySchema;
 
@@ -36,8 +30,8 @@ const updateStoreSchema = Joi.object({
     "addressName": Joi.string(),
     "uuid": Joi.string(),
     "id": Joi.string(),
-    "longitude": Joi.string(),
-    "latitude": Joi.string(),
+    "longitude": Joi.string().pattern(longitudeRegExp),
+    "latitude": Joi.string().pattern(latitudeRegExp),
     "complexNumber": Joi.string(),
     "showWarningMessage": Joi.boolean(),
     "todayOpen": Joi.string(),
@@ -55,8 +49,8 @@ const createNewStoreSchme = Joi.object({
     "street2": Joi.string(),
     "street3": Joi.string(),
     "addressName": Joi.string().required(),
-    "longitude": Joi.string().required(),
-    "latitude": Joi.string().required(),
+    "longitude": Joi.string().pattern(longitudeRegExp),
+    "latitude": Joi.string().pattern(latitudeRegExp),
     "complexNumber": Joi.string(),
     "showWarningMessage": Joi.boolean(),
     "todayOpen": Joi.string().required(),

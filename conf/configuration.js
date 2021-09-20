@@ -32,4 +32,6 @@ const getDbUrl = (dbName) => {
 exports.dbURL =  getDbUrl("jumbo");
 exports.seeds = seeds;
 exports.jwtSecret = configuration.tokens.jwtSecret;
+exports.saltRounds = configuration.tokens.saltRounds;
+exports.expiry = configuration.tokens.expiry;
 
