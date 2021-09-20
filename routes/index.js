@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { common } = require("../helpers/");
 const storeCtrl = require("../controllers/stores");
+const { verify } = require('../middleware');
+
+router.all('*', verify);
 
 /* List all stores. */
 router.get('/', (req, res) => {

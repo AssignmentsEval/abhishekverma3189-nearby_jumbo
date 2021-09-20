@@ -31,4 +31,5 @@ const getDbUrl = (dbName) => {
 
 exports.dbURL =  getDbUrl("jumbo");
 exports.seeds = seeds;
+exports.jwtSecret = configuration.tokens.jwtSecret;
 
