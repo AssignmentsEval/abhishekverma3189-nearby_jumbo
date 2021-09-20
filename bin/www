@@ -11,8 +11,8 @@ const mongoose = require('mongoose');
 const { dbURL, seeds } = require("../conf/configuration");
 const models = ["store"];
 
+
 const connectDB = async () => {
-    console.log(`Connecting DB`);
     try {
         return await mongoose.connect(dbURL, {
             useNewUrlParser: true,
@@ -27,29 +27,29 @@ const executeSeeds = async () => {
     if (!seeds || !seeds.length) {
         return;
     }
-    console.log(`Executing Seeds`);
     for (const seed of seeds) {
         try {
             if (!seed.model || !models.includes(seed.model.toLowerCase()) || !seed.data || !seed.data.length) {
                 return;
             }
             const model = require(`../models/${seed.model.toLowerCase()}`)[seed.model];
+            if (!model) {
+                continue;
+            }
             for (const document of seed.data) {
+                document.storeId = document.uuid;
                 await model.findOneAndUpdate({ uuid: document.uuid }, document, { upsert: true });
             }
         } catch (error) {
             throw new Error(`${error.toString() || "Cannot execute seeds"}`);
         }
     }
-    console.log(`Seeds Executed Successfully`);
     return;
 }
-
 
 connectDB()
     .then(_ => executeSeeds())
     .then(_ => {
-        console.log(`DB connection successful`);
         /**
          * Get port from environment and store in Express.
          */
@@ -123,9 +123,10 @@ connectDB()
             var bind = typeof addr === 'string' ?
                 'pipe ' + addr :
                 'port ' + addr.port;
-            console.log('Listening on ' + bind);
+                console.log('Listening on ' + bind);
         }
     })
     .catch(err => {
-        console.log(err);
+        console.error(`Server start failed: ${err.toString()}`);
+        process.exit(1);
     });

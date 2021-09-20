@@ -14,7 +14,7 @@ exports.verify = (req, res, next) => {
             return common.sendFailureResp(res)(err);
         }
         const user = await User.findOne({ email: value.data.email, password: value.data.password });
-        if (user ) {
+        if (!user) {
             return common.sendFailureResp(res)("Token not mapped to any client");
         }
         req.user = value.data;

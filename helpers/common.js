@@ -1,9 +1,10 @@
 const radPoint = (180/Math.PI); //57.29577951308232
 const kilometerMultiplier = 6378.8;
 const mileMultiplier = 3963;
+const inMemoryCache = {};
 
 const calculateDistance = (pointA, pointB, unit = "K")  => {
-    console.log(pointA, pointB);
+    // console.log(pointA, pointB);
     let { lat1, long1 } = pointA;
     let { lat2, long2 } = pointB;
     let multiplier = unit  === "K" ? kilometerMultiplier : mileMultiplier;
@@ -31,20 +32,10 @@ const calculateDistance = (pointA, pointB, unit = "K")  => {
 }
 exports.calculateDistance = calculateDistance;
 
-
-
 const sendFailureResp = (res) => (error) => {
-    error = error || 'Something went wrong. Please try after some time';
-    let errorMsg = null;
-    if(error && error.details && error.details.length) {
-        errorMsg = error.details.map(x => x && x.message ? x.message : '').join(". ");
-    }
-    if(error.message) {
-        errorMsg = error.message;
-    }
     return res.send({
         success: false,
-        message: errorMsg ? errorMsg : error.toString()
+        message: error || 'Something went wrong. Please try after some time'
     });
 }
 exports.sendFailureResp = sendFailureResp;
@@ -57,3 +48,20 @@ const sendSuccessResp = (res, message) => (data) => {
     })
 }
 exports.sendSuccessResp = sendSuccessResp;
+
+
+const setCache = (key, data) => {
+    if (key && data) {
+        inMemoryCache[JSON.stringify(key)] = JSON.stringify(data);
+    }
+}
+exports.setCache = setCache;
+
+const getCache = (key) => {
+    key = JSON.stringify(key);
+    if (inMemoryCache[key]) {
+        return JSON.parse(inMemoryCache[key]);
+    }
+    return [];
+}
+exports.getCache = getCache;

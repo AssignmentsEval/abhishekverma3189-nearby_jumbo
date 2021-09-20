@@ -9,6 +9,7 @@ const StoreSchema = new mongoose.Schema({
     "street3": { type: String },
     "addressName": { type: String },
     "uuid": { type: String, required: [true, 'uuid is mandatory'] },
+    "storeId": { type: String, required: [true, 'storeId is mandatory'] },
     "longitude": { type: String, required: [true, 'Longitude is mandatory'] },
     "latitude": { type: String, required: [true, 'Latitude is mandatory'] },
     "complexNumber": { type: String },
@@ -21,7 +22,7 @@ const StoreSchema = new mongoose.Schema({
 }, {
     toJSON: { getters: true, virtuals: true },
     timestamps:  { createdAt: 'created_at', updatedAt: 'updated_at' }
-}, );
+});
 
 
 // Compile the store model from StoreSchema

@@ -24,7 +24,7 @@ const getDbUrl = (dbName) => {
 		}
 		url += "replicaSet=" + replicaSet;
 	}
-    console.log(`DB URL `, url);
+    // console.log(`DB URL `, url);
 	return url;
 };
 
