@@ -125,3 +125,36 @@ Listening on port 3000
         "long1": "4.163299",
         "unit": "K"
     }'
+    
+    Response:
+    {
+    "success": true,
+    "data": [{
+            "addressName": "Some Store",
+            "city": "Some City",
+            "latitude": "XX.XXX",
+            "locationType": "Supermarket",
+            "longitude": "X.XX",
+            "postalCode": "87672",
+            "street": "A random street",
+            "street2": "30",
+            "street3": "",
+            "todayClose": "21:00",
+            "todayOpen": "08:00",
+            "distanceFromUser": 142.1894260246159
+        },{
+            "addressName": "Some Store",
+            "city": "Some City",
+            "latitude": "XX.XXX",
+            "locationType": "Supermarket",
+            "longitude": "X.XX",
+            "postalCode": "87672",
+            "street": "A random street",
+            "street2": "30",
+            "street3": "",
+            "todayClose": "21:00",
+            "todayOpen": "08:00",
+            "distanceFromUser": 145.1894260246159
+        }],
+    "message": "Nearby stores"
+    }
