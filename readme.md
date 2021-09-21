@@ -31,12 +31,12 @@ List Nearby stores
 [(Back to top)](#table-of-contents)
 
 Pre-Requisites:
-- nvm
+- nvm 0.38.0
 - node v12.x.x
-- npm
-- mongo db
-- python
-- node-gyp
+- npm 6.14.6
+- mongo db v4.4.9
+- python3 3.8.10
+- node-gyp v8.2.0
 
 Clone And Setup application:
 - cd $HOME
