@@ -32,6 +32,7 @@ List Nearby stores
 [(Back to top)](#table-of-contents)
 
 Pre-Requisites:
+- Ubuntu 20.04 LTS or 16.08 LTS // tested on 2 Linux version.
 - nvm 0.38.0
 - node v12.x.x
 - npm 6.14.6
