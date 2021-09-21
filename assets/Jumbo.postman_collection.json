@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "24f0bbd2-a39b-4da9-a9a1-177d9ff5ccd0",
+		"name": "Jumbo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List All Stores",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{jumboToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_aws}}/stores",
+					"host": [
+						"{{base_aws}}"
+					],
+					"path": [
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Nearby Stores",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{jumboToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lat1\": \"50.002103\",\n    \"long1\": \"4.163299\",\n    \"unit\": \"K\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_aws}}/stores/nearby",
+					"host": [
+						"{{base_aws}}"
+					],
+					"path": [
+						"stores",
+						"nearby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Store Details",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{jumboToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"street35\": \"Bailey Road\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_aws}}/stores/EOgKYx4XFiQAAAFJa_YYZ4At",
+					"host": [
+						"{{base_aws}}"
+					],
+					"path": [
+						"stores",
+						"EOgKYx4XFiQAAAFJa_YYZ4At"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateToken",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"XXXXX\",\n    \"password\": \"XXXX\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_aws}}/api/auth/createToken",
+					"host": [
+						"{{base_aws}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"createToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store Detail",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{jumboToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_aws}}/stores/EOgKYx4XFiQAAAFJa_YYZ4At",
+					"host": [
+						"{{base_aws}}"
+					],
+					"path": [
+						"stores",
+						"EOgKYx4XFiQAAAFJa_YYZ4At"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{jumboToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"addressName\": \"Jumbo 's Gravendeel Gravendeel Centrum\",\n    \"city\": \"'s Gravendeel\",\n    \"collectionPoint\": true,\n    \"complexNumber\": \"33249\",\n    \"latitude\": \"51.778461\",\n    \"locationType\": \"SupermarktPuP\",\n    \"longitude\": \"4.615551\",\n    \"postalCode\": \"3295 BD\",\n    \"sapStoreID\": \"3605\",\n    \"showWarningMessage\": true,\n    \"street\": \"Kerkstraat\",\n    \"street2\": \"37\",\n    \"todayClose\": \"20:00\",\n    \"todayOpen\": \"08:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_aws}}/stores",
+					"host": [
+						"{{base_aws}}"
+					],
+					"path": [
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"max@test.com\",\n    \"password\": \"helloworld\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_aws}}/api/auth/fetchToken",
+					"host": [
+						"{{base_aws}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"fetchToken"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
