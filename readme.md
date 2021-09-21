@@ -25,6 +25,7 @@ List Nearby stores
 - [Table of contents](#table-of-contents)
 - [Installation](#installation)
 - [APIs:](#apis)
+- [Postman Dump](#postmandump)
 
 
 # Installation
@@ -158,5 +159,6 @@ Listening on port 3000
         }],
     "message": "Nearby stores"
     }
-    
+# Postman Dump
+[(Back to top)](#table-of-contents)
 [Postman Collection Link](https://github.com/abhishekverma3189/nearby_jumbo/blob/master/assets/Jumbo.postman_collection.json)
